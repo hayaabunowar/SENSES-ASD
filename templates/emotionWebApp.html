@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+        body {
+            background-color: #213c50;
+            font-weight: 300;
+            color: #404040;
+            font-family: "Calibri light";
+        }
+
+        .mainHeading {
+            margin-bottom: 0px !important;
+            padding-top: 10px;
+            color: white;
+            text-align: center;
+            font-weight: 800;
+            font-size: 2em;
+            font-family: calibri;
+
+        }
+
+        .navBar {
+            background-color: rgba(172, 171, 171, 0.532);
+        }
+
+
+        .options li a:hover {
+            color: aqua;
+        }
+
+        .options .active a {
+            color: rgba(0, 255, 255, 0.801);
+            text-decoration: underline rgba(0, 255, 255, 0.801) 2.7px;
+            text-underline-offset: 2.5vh;
+            height: 2px;
+            width: 100%;
+            display: block;
+            content: " ";
+            bottom: 0px;
+            left: 0px;
+        }
+
+
+        .options ul {
+            list-style-type: none;
+            /*removes bullets from list items*/
+            display: flex;
+            margin: 0 auto;
+            padding:0;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            
+        }
+
+
+        .options li {
+            line-height: 52px;
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            overflow: hidden;
+            width: 100px;
+            font-weight: 500;
+            height: 50px;
+            text-align: center;
+            font-size: 1.4vw;
+            font-family: calibri;
+            text-transform: uppercase;
+            flex: row;
+            color: white;
+            margin-left: 0.2vw;
+            text-decoration: none;
+            font-weight: 550;
+
+        }
+
+        .options li a {
+            font-size: 1.4vw;
+            font-family: calibri light;
+            text-transform: uppercase;
+            flex: row;
+            color: white;
+            margin-left: 0vw;
+            text-decoration: none;
+
+        }
+
+
+        .center {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+
+        .sectionContainer {
+            background: rgba(0, 0, 0, 0.397);
+            padding-bottom: 30px;
+            margin: 0 auto 2em;
+            width: 50% !important;
+            margin-top: 130px;
+        }
+
+        .sectionHeading {
+            padding-top: 30px;
+            overflow: hidden;
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+        .sectionHeading img {
+            border-radius: 100%;
+            float: left
+        }
+
+        .sectionHeading h2 {
+            font-weight: 400;
+            float: left;
+            color: white;
+            margin-left: 20px;
+        }
+
+        .sectionHeading .heart {
+            cursor: pointer;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+            padding: 7px;
+            border-radius: 2px
+        }
+
+        .sectionContainer p:first-of-type {
+            margin-top: 0
+        }
+
+        .sectionContainer p {
+            padding: 0px 30px;
+            font-size: 19px;
+            line-height: 26px;
+            margin: 0;
+            margin-top: 1em;
+        }
+
+        .sectionContainer a {
+            text-decoration: none;
+            color: #00bcd4;
+            font-weight: 500;
+            font-size: 0.8em;
+        }
+
+        .uploadSection {
+            display: none;
+            overflow: auto;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .uploadSection.show {
+            display: block;
+        }
+
+
+        /* Image Upload CSS */
+
+        .uploadContainer {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            padding-top: 20px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        input[type="submit"] {
+            margin-left: -5px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 20px;
+            padding-right: 20px;
+            background: #1fb0b2;
+            color: white;
+            border: none;
+        }
+
+        .fileUploadSelection {
+            border: 2px dashed #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            width: 400px;
+            cursor: pointer;
+            background: #FFFFFF;
+        }
+
+        .console {
+            width: 100%;
+            height: 275px;
+            border: 4px solid #bbb;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .console .console-head {
+            height: 30px;
+            background-color: #bbb;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            border-bottom: 4px solid #bbb;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+        .console .console-head .console-title {
+            font-weight: 800;
+            font-size: 2em;
+            color: #222;
+        }
+
+        .console .console-body {
+            height: calc(100% - 30px);
+            background-color: #222;
+            white-space: nowrap;
+            overflow: auto;
+            text-overflow: ellipsis;
+        }
+
+        .console .console-body .console-text {
+            padding: 4px;
+            color: #ddd;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="navBar">
+        <div>
+            <p class="mainHeading">FACIAL EMOTION RECOGNTION</p>
+        </div>
+        <div class="options">
+            <ul>
+                <li class="option active"><a href="#imageUploadSec">IMAGE UPLOAD<span></span></a></li>
+                <li class="option"><a href="#videoUploadSec">VIDEO UPLOAD<span></span></a></li>
+                <li class="option"><a href="#realtimeStreamSec">REALTIME STREAMING<span></span></a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div>
+        <div id="imageUploadSec" class="uploadSection show">
+            <div class="sectionContainer">
+                <div class="sectionHeading">
+                    <h2>Upload Image</h2>
+                </div>
+                <div class="uploadContainer">
+                    <form action="/" method="POST" enctype="multipart/form-data">
+                        <div class="center div"><img id="imagePlaceholder"></div>
+                        <label class="fileUploadSelection">
+                            <span id="imgFilePath" class="center">Click here to select file</span>
+                            <input type="file" name="imgFileSubmission" id="imgFileSubmission">
+                        </label>
+                        <input type="submit" value="Submit" name="submit">
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="videoUploadSec" class="uploadSection">
+            <div class="sectionContainer">
+                <div class="sectionHeading">
+                    <h2>Upload Video</h2>
+                </div>
+                <div class="uploadContainer">
+                    <form action="/videoUpload" method="POST" enctype="multipart/form-data">
+                        <label class="fileUploadSelection">
+                            <span id="videoFilePath" class="center">Click here to select file</span>
+                            <input type="file" name="videoFileSubmission" id="videoFileSubmission">
+                        </label>
+                        <input type="submit" value="Submit" name="submit">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="realtimeStreamSec" class="uploadSection">
+            <div class="sectionContainer">
+                <div class="sectionHeading">
+                    <h2>Realtime Streaming</h2>
+                </div>
+                <div class="uploadContainer">
+                    <form action="/realtimeVideo" method="POST">
+                        <input type="submit" value="Livestream" name="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var classname = document.getElementsByClassName("option");
+            var boxitem = document.getElementsByClassName("uploadSection");
+
+            var clickFunction = function (e) {
+                e.preventDefault();
+                var a = this.getElementsByTagName("a")[0];
+                var span = this.getElementsByTagName("span")[0];
+                var href = a.getAttribute("href").replace("#", "");
+                for (var i = 0; i < boxitem.length; i++) {
+                    boxitem[i].className = boxitem[i].className.replace(/(?:^|\s)show(?!\S)/g, '');
+                }
+                document.getElementById(href).className += " show";
+                for (var i = 0; i < classname.length; i++) {
+                    classname[i].className = classname[i].className.replace(/(?:^|\s)active(?!\S)/g, '');
+                }
+                this.className += " active";
+                span.className += 'active';
+                var left = a.getBoundingClientRect().left;
+                var top = a.getBoundingClientRect().top;
+                var consx = (e.clientX - left);
+                var consy = (e.clientY - top);
+                span.style.top = consy + "px";
+                span.style.left = consx + "px";
+                span.className = 'clicked';
+                span.addEventListener('webkitAnimationEnd', function (event) {
+                    this.className = '';
+                }, false);
+            };
+
+            for (var i = 0; i < classname.length; i++) {
+                classname[i].addEventListener('click', clickFunction, false);
+            }
+        }
+
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePlaceholder').attr('src', e.target.result);
+                    $('#imgFilePath').html(input.files[0].name);
+                    
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function readURL2(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#videoFilePath').html(input.files[0].name);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $('#imgFileSubmission').change(function () {
+            readURL(this);
+        });
+
+        if ($('#imgFileSubmission').get(0).files.length === 0) {
+
+        }
+
+        $('#videoFileSubmission').change(function () {
+            readURL2(this);
+        });
+
+        (function () {
+            var old = console.log;
+            var logger = document.getElementById('log');
+            var logger2 = document.getElementById('log2');
+            console.log = function (message) {
+                if (typeof message == 'object') {
+                    logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(message) : message) + '<br />';
+                    logger2.innerHTML += (JSON && JSON.stringify ? JSON.stringify(message) : message) + '<br />';
+                } else {
+                    logger.innerHTML += message + '<br />';
+                    logger2.innerHTML += message + '<br />';
+                }
+            }
+        })();
+
+    </script>
+
+</body>
+
+</html>
